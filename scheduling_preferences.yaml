@@ -1,0 +1,63 @@
+# Course Preferences for Scheduling
+# Weight: 0.0 - 1.0 (0 = avoid, 0.5 = neutral, 1.0 = must have)
+# Priority affects genetic algorithm fitness
+
+courses:
+  # Format: 
+  #   "Mã HP": 
+  #   weight: <float 0.0-1.0>
+  #   bias: <float, added to fitness>
+  #   description: <string>
+  
+  "INT3403":
+    weight: 1.0          # Must have
+    bonus: 0.5           # Huge bonus
+    description: "Đồ họa máy tính - Computer Graphics"
+  
+  "UET.MAT1051":
+    weight: 0.7          # Preferred
+    bonus: 0.15          # Moderate bonus
+    description: "Giải tích 2 - Calculus 2"
+  
+  "INT3405#":
+    weight: 0.4          # Less preferred
+    bonus: 0.0
+    description: "Học máy - Machine Learning"
+  
+  "INT3011E":
+    weight: 0.5          # Neutral
+    bonus: 0.0
+    description: "Các vấn đề hiện đại trong KHMT - Modern Issues in CS"
+  
+  "INT3307":
+    weight: 0.6          # more prefer
+    bonus: 0.08
+    description: "An toàn và an ninh mạng - Network Security"
+  
+  "INT3401E":
+    weight: 0.4          # less prefer
+    bonus: -0.05         # penalty
+    description: "Trí tuệ nhân tạo - Artificial Intelligence"
+  
+  "PES 1003":
+    weight: 0.6          # Avoid (still need credits)
+    bonus: 0.05         # Slight bonus
+    description: "Giáo dục thể chất cơ bản - Physical Education"
+
+# Time preferences
+time_preferences:
+  preferred_days: [2, 3, 4, 5, 6]  # Monday-Friday (2-6)
+  day_penalty: 0.1              # Penalty for courses on non-preferred days (subtracted from fitness)
+  avoid_early_morning: false    # Avoid before 5 (morning)
+  avoid_late_evening: false     # Avoid after 13 (evening)
+  preferred_session_start: 4    # Prefer sessions starting at X
+  
+# GA Configuration
+ga_config:
+  min_credits: 14
+  max_credits: 17
+  population_size: 1000
+  generations: 1000
+  tournament_size: 3
+  start_mutation_rate: 0.3       # Initial mutation rate (high exploration)
+  end_mutation_rate: 0.05        # Final mutation rate (low exploitation)

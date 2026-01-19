@@ -4,6 +4,7 @@ import math
 import yaml
 from typing import List, Tuple, Dict, Set
 from dataclasses import dataclass, field
+from datetime import datetime
 
 
 @dataclass
@@ -19,7 +20,7 @@ class LHP:
     ca: Tuple[int, int]  # time slot (start, end)
 
     def __post_init__(self):
-        assert self.thu in range(2, 7), "Thursday must be 2-6"
+        assert self.thu in range(2, 7), "Thu must be 2-6"
         assert len(self.ca) == 2, "Ca must have exactly 2 elements"
         assert self.ca[1] - self.ca[0] <= 3, "Ca duration must be <= 3"
 
@@ -46,11 +47,24 @@ class LHP:
                     parts = tiết_str.replace("Tiết ", "").split("-")
                     ca = (int(parts[0]), int(parts[1]))
                 else:
-                    ca = (7, 8)  # Default fallback
+                    ca = (7, 9)  # Default fallback
             else:
                 gd = row[14]  # Normal courses: classroom is in col 14
-                ca_num = int(row[13])
-                ca = (ca_num * 4 - 3, ca_num * 4 - 1)
+                ca_str = row[13].strip() if row[13] else ""
+                
+                # Parse Ca column: number (1-4), x-y range, or empty
+                if not ca_str:
+                    # Empty Ca = online course
+                    ca = (0, 0)
+                elif '-' in ca_str:
+                    # Already in x-y format
+                    parts = ca_str.split('-')
+                    ca = (int(parts[0]), int(parts[1]))
+                else:
+                    # Single number mapping: 1→(1,3), 2→(4,6), 3→(7,9), 4→(10,12)
+                    ca_num = int(ca_str)
+                    ca_map = {1: (1, 3), 2: (4, 6), 3: (7, 9), 4: (10, 12)}
+                    ca = ca_map.get(ca_num, (0, 0))
             
             return LHP(tc=tc, ten=ten, ma_hp=ma_hp, ma=ma, lt_th=lt_th, gd=gd, thu=thu, ca=ca)
         except (ValueError, IndexError) as e:
@@ -195,6 +209,13 @@ class GeneticScheduler:
         
         self.course_codes = sorted(course_code_groups.keys())
         
+        # Extract time preferences
+        time_prefs = self.preferences.get('time_preferences', {})
+        self.preferred_days = time_prefs.get('preferred_days', [2, 3, 4, 5, 6])
+        self.day_penalty = time_prefs.get('day_penalty', 0.1)  # Penalty for non-preferred days
+        self.start_mutation_rate = ga_cfg.get('start_mutation_rate', 0.3)
+        self.end_mutation_rate = ga_cfg.get('end_mutation_rate', 0.05)
+        
         # Extract course preferences
         self.course_prefs = {}
         for ma_hp, pref_data in self.preferences.get('courses', {}).items():
@@ -335,8 +356,15 @@ class GeneticScheduler:
             if ma_hp in self.course_prefs:
                 course_bonus += self.course_prefs[ma_hp]['bonus']
         
-        # Combine base fitness with course bonus
-        final_fitness = fitness_score + course_bonus
+        # Add penalty for courses on non-preferred days
+        day_penalty = 0.0
+        for course_class in individual:
+            for thu, ca_start, ca_end in course_class.get_all_times():
+                if thu not in self.preferred_days:
+                    day_penalty -= self.day_penalty
+        
+        # Combine base fitness with course bonus and day penalty
+        final_fitness = fitness_score + course_bonus + day_penalty
         
         return final_fitness
 
@@ -420,9 +448,9 @@ class GeneticScheduler:
         if len(individual) == 0:
             return individual
         
-        # Adaptive mutation rate: start at 0.3, decrease to 0.05 over generations
+        # Adaptive mutation rate: start at self.start_mutation_rate, decrease to self.end_mutation_rate over generations
         progress = generation / total_generations if total_generations > 0 else 0
-        adaptive_rate = 0.3 - (0.3 - 0.05) * progress
+        adaptive_rate = self.start_mutation_rate - (self.start_mutation_rate - self.end_mutation_rate) * progress
         
         mutated = individual[:]
         
@@ -667,6 +695,38 @@ class GeneticScheduler:
         
         print(f"\nTổng tín chỉ: {total_credits}")
         print("="*80)
+    
+    def save_schedule_to_file(self, schedule: List[CourseClass], fitness_score: float, filename: str = "recent_results.txt") -> None:
+        """Append schedule result to file with timestamp"""
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
+        total_credits = 0
+        schedule_by_day = {}
+        
+        # Flatten all components by day
+        for course_class in schedule:
+            for comp in course_class.components:
+                if comp.thu not in schedule_by_day:
+                    schedule_by_day[comp.thu] = []
+                schedule_by_day[comp.thu].append(comp)
+            total_credits += course_class.get_total_credits()
+        
+        with open(filename, 'a', encoding='utf-8') as f:
+            f.write("\n" + "="*80 + "\n")
+            f.write(f"SCHEDULING RESULT - {timestamp}\n")
+            f.write("="*80 + "\n")
+            f.write(f"Best Fitness Score: {fitness_score:.4f}\n")
+            f.write(f"Total Credits: {total_credits}\n")
+            f.write(f"\n")
+            
+            for day in sorted(schedule_by_day.keys()):
+                f.write(f"Thứ {day}:\n")
+                for comp in sorted(schedule_by_day[day], key=lambda x: x.ca[0]):
+                    ltype = "LT" if comp.lt_th else "TH"
+                    f.write(f"  Tiết {comp.ca[0]}-{comp.ca[1]}: {comp.ten} ({comp.ma_hp} - {comp.ma}) | {ltype} | Phòng: {comp.gd}\n")
+                f.write(f"\n")
+            
+            f.write(f"\n")
 
 
 # Main execution
@@ -709,5 +769,7 @@ if __name__ == "__main__":
     if best_schedule:
         print(f"\nBest Fitness Score: {best_fitness:.4f}")
         scheduler.print_schedule(best_schedule)
+        scheduler.save_schedule_to_file(best_schedule, best_fitness)
+        print("\n✅ Results saved to recent_results.txt")
     else:
         print("No valid schedule found!")
