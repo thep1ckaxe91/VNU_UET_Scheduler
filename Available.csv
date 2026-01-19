@@ -1,0 +1,170 @@
+Lớp,Mã HP,Môn,TC,LT,TH,Tự học,PCGD,SS lớp,Mã LHP,Nhóm,LT/TH,Thứ,Ca,GĐ,GV,Ghi chú 1,Ghi chú 2
+K67E-CE1,INT3307,An toàn và an ninh mạng,3,45,,,1,40,INT3307 21,CL,LT+TH,5,1,102-B,Nguyễn Đại Thọ,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-IT1,UET.MAT1051,Giải tích 2,5,45,,,9,60,UET.MAT1051 1,CL,LT,6,3,103-B,Nguyễn Thị Hồng,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-IT1,UET.MAT1051,Giải tích 2,5,,60,,9,60,UET.MAT1051 1,CL,TH,5,3,402-B,Nguyễn Thị Hồng,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-IT1,UET.MAT1051,Giải tích 2,5,,60,,9,60,UET.MAT1051 1,CL,TH,6,2,103-B,Nguyễn Thị Hồng,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-IT2,UET.MAT1051,Giải tích 2,5,45,,,9,63,UET.MAT1051 2,CL,LT,2,3,205-B,Nguyễn Năng Thiều,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-IT2,UET.MAT1051,Giải tích 2,5,,60,,9,63,UET.MAT1051 2,CL,TH,3,1,206-B,Nguyễn Năng Thiều,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-IT2,UET.MAT1051,Giải tích 2,5,,60,,9,63,UET.MAT1051 2,CL,TH,4,4,209-B,Nguyễn Năng Thiều,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-IT3,UET.MAT1051,Giải tích 2,5,45,,,9,62,UET.MAT1051 3,CL,LT,4,3,308-B,Nguyễn Năng Thiều,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-IT3,UET.MAT1051,Giải tích 2,5,,60,,9,62,UET.MAT1051 3,CL,TH,6,1,205-B,Nguyễn Năng Thiều,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-IT3,UET.MAT1051,Giải tích 2,5,,60,,9,62,UET.MAT1051 3,CL,TH,2,4,509-B,Nguyễn Năng Thiều,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-IT4,UET.MAT1051,Giải tích 2,5,45,,,9,61,UET.MAT1051 4,CL,LT,3,3,308-B,Nguyễn Thị Hồng,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-IT4,UET.MAT1051,Giải tích 2,5,,60,,9,61,UET.MAT1051 4,CL,TH,3,2,308-B,Nguyễn Thị Hồng,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-IT4,UET.MAT1051,Giải tích 2,5,,60,,9,61,UET.MAT1051 4,CL,TH,6,4,409-B,Nguyễn Thị Hồng,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-IT5,UET.MAT1051,Giải tích 2,5,45,,,9,59,UET.MAT1051 5,CL,LT,5,1,402-B,Đào Quang Khải,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-IT5,UET.MAT1051,Giải tích 2,5,,60,,9,59,UET.MAT1051 5,CL,TH,2,2,106-A,Đào Quang Khải,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-IT5,UET.MAT1051,Giải tích 2,5,,60,,9,59,UET.MAT1051 5,CL,TH,5,2,402-B,Đào Quang Khải,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-IT6,UET.MAT1051,Giải tích 2,5,45,,,9,61,UET.MAT1051 6,CL,LT,4,2,501-B,Viện Cơ,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-IT6,UET.MAT1051,Giải tích 2,5,,60,,9,61,UET.MAT1051 6,CL,TH,3,4,301-B,Viện Cơ,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-IT6,UET.MAT1051,Giải tích 2,5,,60,,9,61,UET.MAT1051 6,CL,TH,2,1,108-B,Viện Cơ,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-IT7,UET.MAT1051,Giải tích 2,5,45,,,9,61,UET.MAT1051 7,CL,LT,2,3,410-B,Đào Quang Khải,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-IT7,UET.MAT1051,Giải tích 2,5,,60,,9,61,UET.MAT1051 7,CL,TH,5,3,303-B,Đào Quang Khải,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-IT7,UET.MAT1051,Giải tích 2,5,,60,,9,61,UET.MAT1051 7,CL,TH,4,2,402-B,Đào Quang Khải+Đỗ Thái Dương,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-CS1,UET.MAT1051,Giải tích 2,5,45,,,9,60,UET.MAT1051 8,CL,LT,5,2,205-B,Nguyễn Thị Hồng,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-CS1,UET.MAT1051,Giải tích 2,5,,60,,9,60,UET.MAT1051 8,CL,TH,6,1,201-B,Thẩm Như Phong,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-CS1,UET.MAT1051,Giải tích 2,5,,60,,9,60,UET.MAT1051 8,CL,TH,3,3,503-B,Thẩm Như Phong,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-CS2,UET.MAT1051,Giải tích 2,5,45,,,9,61,UET.MAT1051 9,CL,LT,5,4,403-B,Đào Quang Khải,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-CS2,UET.MAT1051,Giải tích 2,5,,60,,9,61,UET.MAT1051 9,CL,TH,6,2,408-B,Thẩm Như Phong,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-CS2,UET.MAT1051,Giải tích 2,5,,60,,9,61,UET.MAT1051 9,CL,TH,4,3,302-B,Thẩm Như Phong,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-CS3,UET.MAT1051,Giải tích 2,5,45,,,9,59,UET.MAT1051 10,CL,LT,6,3,201-B,Nguyễn Quỳnh Nga,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-CS3,UET.MAT1051,Giải tích 2,5,,60,,9,59,UET.MAT1051 10,CL,TH,2,2,303-B,Dương Thị Thùy Vinh,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-CS3,UET.MAT1051,Giải tích 2,5,,60,,9,59,UET.MAT1051 10,CL,TH,4,4,508-B,Dương Thị Thùy Vinh,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-CS4,UET.MAT1051,Giải tích 2,5,45,,,9,61,UET.MAT1051 11,CL,LT,4,1,301-B,Trần Thu Hà,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-CS4,UET.MAT1051,Giải tích 2,5,,60,,9,61,UET.MAT1051 11,CL,TH,5,1,510-B,Dương Thị Thanh Hương,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-CS4,UET.MAT1051,Giải tích 2,5,,60,,9,61,UET.MAT1051 11,CL,TH,2,1,209-B,Dương Thị Thanh Hương,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-CS5,UET.MAT1051,Giải tích 2,5,45,,,9,60,UET.MAT1051 12,CL,LT,6,2,201-B,Viện Cơ,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-CS5,UET.MAT1051,Giải tích 2,5,,60,,9,60,UET.MAT1051 12,CL,TH,2,2,302-B,Nguyễn Thế Hoàng,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-CS5,UET.MAT1051,Giải tích 2,5,,60,,9,60,UET.MAT1051 12,CL,TH,4,3,201-B,Nguyễn Thế Hoàng,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-CS6,UET.MAT1051,Giải tích 2,5,45,,,9,59,UET.MAT1051 13,CL,LT,2,4,510-B,Nguyễn Bích Vân,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-CS6,UET.MAT1051,Giải tích 2,5,,60,,9,59,UET.MAT1051 13,CL,TH,5,4,210-B,Nguyễn Bích Vân,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-CS6,UET.MAT1051,Giải tích 2,5,,60,,9,59,UET.MAT1051 13,CL,TH,2,3,510-B,Nguyễn Bích Vân,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-CS7,UET.MAT1051,Giải tích 2,5,45,,,9,61,UET.MAT1051 15,CL,LT,3,4,410-B,Nguyễn Bích Vân,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-CS7,UET.MAT1051,Giải tích 2,5,,60,,9,61,UET.MAT1051 15,CL,TH,4,1,410-B,Nguyễn Bích Vân+Đỗ Thái Dương,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-CS7,UET.MAT1051,Giải tích 2,5,,60,,9,61,UET.MAT1051 15,CL,TH,5,2,107-B,Nguyễn Bích Vân,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-IS1,UET.MAT1051,Giải tích 2,5,45,,,9,56,UET.MAT1051 16,CL,LT,3,2,507-B,Viện Cơ,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-IS1,UET.MAT1051,Giải tích 2,5,,60,,9,56,UET.MAT1051 16,CL,TH,3,1,507-B,Viện Cơ,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-IS1,UET.MAT1051,Giải tích 2,5,,60,,9,56,UET.MAT1051 16,CL,TH,6,1,210-T,Viện Cơ,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-IS2,UET.MAT1051,Giải tích 2,5,45,,,9,57,UET.MAT1051 17,CL,LT,5,1,302-B,Dư Thành Hưng,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-IS2,UET.MAT1051,Giải tích 2,5,,60,,9,57,UET.MAT1051 17,CL,TH,3,3,407-B,Dư Thành Hưng,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-IS2,UET.MAT1051,Giải tích 2,5,,60,,9,57,UET.MAT1051 17,CL,TH,6,4,410-B,Dư Thành Hưng,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-IS3,UET.MAT1051,Giải tích 2,5,45,,,9,57,UET.MAT1051 18,CL,LT,4,2,103-B,Viện Cơ,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-IS3,UET.MAT1051,Giải tích 2,5,,60,,9,57,UET.MAT1051 18,CL,TH,2,2,403-B,Dư Thành Hưng,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-IS3,UET.MAT1051,Giải tích 2,5,,60,,9,57,UET.MAT1051 18,CL,TH,3,4,206-T,Dư Thành Hưng,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-IS4,UET.MAT1051,Giải tích 2,5,45,,,9,56,UET.MAT1051 19,CL,LT,6,2,503-B,Đặng Hữu Chung,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-IS4,UET.MAT1051,Giải tích 2,5,,60,,9,56,UET.MAT1051 19,CL,TH,5,4,309-B,Đặng Hữu Chung,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-IS4,UET.MAT1051,Giải tích 2,5,,60,,9,56,UET.MAT1051 19,CL,TH,4,2,408-B,Đặng Hữu Chung,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-IS5,UET.MAT1051,Giải tích 2,5,45,,,9,57,UET.MAT1051 20,CL,LT,5,2,206-B,Dư Thành Hưng,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-IS5,UET.MAT1051,Giải tích 2,5,,60,,9,57,UET.MAT1051 20,CL,TH,4,1,509-B,Viện Cơ,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-IS5,UET.MAT1051,Giải tích 2,5,,60,,9,57,UET.MAT1051 20,CL,TH,2,1,105-T,Viện Cơ,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-CN1,UET.MAT1051,Giải tích 2,5,45,,,9,61,UET.MAT1051 43,CL,LT,3,1,210-B,Viện Cơ,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-CN1,UET.MAT1051,Giải tích 2,5,,60,,9,61,UET.MAT1051 43,CL,TH,5,1,404-B,Viện Cơ,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-CN1,UET.MAT1051,Giải tích 2,5,,60,,9,61,UET.MAT1051 43,CL,TH,6,3,401-B,Viện Cơ,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70I-CN2,UET.MAT1051,Giải tích 2,5,45,,,9,60,UET.MAT1051 44,CL,LT,2,4,306-B,Trần Quốc Bình,,"Học 1 ca/15 tuần, thi đợt 2"
+K70I-CN2,UET.MAT1051,Giải tích 2,5,,60,,9,60,UET.MAT1051 44,CL,TH,2,3,306-B,Trần Quốc Bình,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70I-CN2,UET.MAT1051,Giải tích 2,5,,60,,9,60,UET.MAT1051 44,CL,TH,6,1,304-B,Trần Quốc Bình,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70A-AI1,UET.MAT1051,Giải tích 2,5,45,,,9,62,UET.MAT1051 45,CL,LT,5,4,302-B,Nguyễn Bích Vân,,"Học 1 ca/15 tuần, thi đợt 2"
+K70A-AI1,UET.MAT1051,Giải tích 2,5,,60,,9,62,UET.MAT1051 45,CL,TH,5,3,302-B,Nguyễn Bích Vân,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70A-AI1,UET.MAT1051,Giải tích 2,5,,60,,9,62,UET.MAT1051 45,CL,TH,3,3,307-B,Nguyễn Bích Vân,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70A-AI2,UET.MAT1051,Giải tích 2,5,45,,,9,62,UET.MAT1051 46,CL,LT,4,4,301-B,Nguyễn Thế Hoàng,,"Học 1 ca/15 tuần, thi đợt 2"
+K70A-AI2,UET.MAT1051,Giải tích 2,5,,60,,9,62,UET.MAT1051 46,CL,TH,3,4,306-B,Nguyễn Thế Hoàng,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70A-AI2,UET.MAT1051,Giải tích 2,5,,60,,9,62,UET.MAT1051 46,CL,TH,4,2,301-B,Nguyễn Thế Hoàng,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70A-AI3,UET.MAT1051,Giải tích 2,5,45,,,9,63,UET.MAT1051 47,CL,LT,4,3,206-B,Phan Văn Tín,,"Học 1 ca/15 tuần, thi đợt 2"
+K70A-AI3,UET.MAT1051,Giải tích 2,5,,60,,9,63,UET.MAT1051 47,CL,TH,4,2,206-B,Phan Văn Tín,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70A-AI3,UET.MAT1051,Giải tích 2,5,,60,,9,63,UET.MAT1051 47,CL,TH,6,4,106-A,Phan Văn Tín+Đỗ Thái Dương,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70A-AI4,UET.MAT1051,Giải tích 2,5,45,,,9,60,UET.MAT1051 48,CL,LT,3,2,202-B,Phạm Hoàng Hiệp,,"Học 1 ca/15 tuần, thi đợt 2"
+K70A-AI4,UET.MAT1051,Giải tích 2,5,,60,,9,60,UET.MAT1051 48,CL,TH,2,4,403-B,Phạm Hoàng Hiệp,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70A-AI4,UET.MAT1051,Giải tích 2,5,,60,,9,60,UET.MAT1051 48,CL,TH,6,3,104-B,Phạm Hoàng Hiệp+Đỗ Thái Dương,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70A-AI5,UET.MAT1051,Giải tích 2,5,45,,,9,63,UET.MAT1051 49,CL,LT,5,4,305-B,Nguyễn Bích Vân,,"Học 1 ca/15 tuần, thi đợt 2"
+K70A-AI5,UET.MAT1051,Giải tích 2,5,,60,,9,63,UET.MAT1051 49,CL,TH,6,1,403-B,Nguyễn Bích Vân+Đỗ Thái Dương,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70A-AI5,UET.MAT1051,Giải tích 2,5,,60,,9,63,UET.MAT1051 49,CL,TH,2,2,109-B,Nguyễn Bích Vân,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70A-DS1,UET.MAT1051,Giải tích 2,5,45,,,9,58,UET.MAT1051 50,CL,LT,6,2,102-B,Nguyễn Chính Kiên,,"Học 1 ca/15 tuần, thi đợt 2"
+K70A-DS1,UET.MAT1051,Giải tích 2,5,,60,,9,58,UET.MAT1051 50,CL,TH,5,2,405-B,Trần Mạnh Cường,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70A-DS1,UET.MAT1051,Giải tích 2,5,,60,,9,58,UET.MAT1051 50,CL,TH,2,1,304-B,Trần Mạnh Cường,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70A-DS2,UET.MAT1051,Giải tích 2,5,45,,,9,59,UET.MAT1051 51,CL,LT,4,1,210-B,Nguyễn Minh Tuấn,,"Học 1 ca/15 tuần, thi đợt 2"
+K70A-DS2,UET.MAT1051,Giải tích 2,5,,60,,9,59,UET.MAT1051 51,CL,TH,2,4,501-B,Nguyễn Minh Tuấn,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70A-DS2,UET.MAT1051,Giải tích 2,5,,60,,9,59,UET.MAT1051 51,CL,TH,4,3,210-B,Nguyễn Minh Tuấn,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70M-EM,UET.MAT1051,Giải tích 2,5,45,,145,9,66,UET.MAT1051 37,CL,LT,4,2,106-A,Trần Thanh Hải,,"Học 1 ca/15 tuần, thi đợt 2"
+K70M-EM,UET.MAT1051,Giải tích 2,5,,60,145,9,66,UET.MAT1051 37,CL,TH,5,2,508-B,Nguyễn Khánh Sơn,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70M-EM,UET.MAT1051,Giải tích 2,5,,60,145,9,66,UET.MAT1051 37,CL,TH,2,3,405-B,Nguyễn Khánh Sơn,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70E-EC1,UET.MAT1051,Giải tích 2,5,45,,145,9,60,UET.MAT1051 21,CL,LT,5,4,503-B,Đào Hoàng Dũng,,"Học 1 ca/15 tuần, thi đợt 2"
+K70E-EC1,UET.MAT1051,Giải tích 2,5,,60,145,9,60,UET.MAT1051 21,CL,TH,5,3,503-B,Đào Hoàng Dũng,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70E-EC1,UET.MAT1051,Giải tích 2,5,,60,145,9,60,UET.MAT1051 21,CL,TH,2,2,305-B,Đào Hoàng Dũng,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70E-EC2,UET.MAT1051,Giải tích 2,5,45,,145,9,61,UET.MAT1051 22,CL,LT,3,3,201-B,Đào Hoàng Dũng,,"Học 1 ca/15 tuần, thi đợt 2"
+K70E-EC2,UET.MAT1051,Giải tích 2,5,,60,145,9,61,UET.MAT1051 22,CL,TH,5,2,504-B,Dương Thị Thùy Vinh,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70E-EC2,UET.MAT1051,Giải tích 2,5,,60,145,9,61,UET.MAT1051 22,CL,TH,3,2,201-B,Dương Thị Thùy Vinh,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70E-EC3,UET.MAT1051,Giải tích 2,5,45,,145,9,61,UET.MAT1051 23,CL,LT,2,4,402-B,Đào Quang Khải,,"Học 1 ca/15 tuần, thi đợt 2"
+K70E-EC3,UET.MAT1051,Giải tích 2,5,,60,145,9,61,UET.MAT1051 23,CL,TH,6,2,109-B,Nguyễn Công Minh,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70E-EC3,UET.MAT1051,Giải tích 2,5,,60,145,9,61,UET.MAT1051 23,CL,TH,4,3,203-B,Nguyễn Công Minh,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70E-EC4,UET.MAT1051,Giải tích 2,5,45,,145,9,61,UET.MAT1051 24,CL,LT,3,4,509-B,Đào Hoàng Dũng,,"Học 1 ca/15 tuần, thi đợt 2"
+K70E-EC4,UET.MAT1051,Giải tích 2,5,,60,145,9,61,UET.MAT1051 24,CL,TH,4,2,409-B,Dương Thị Thùy Vinh,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70E-EC4,UET.MAT1051,Giải tích 2,5,,60,145,9,61,UET.MAT1051 24,CL,TH,2,1,401-B,Dương Thị Thùy Vinh,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70E-EC5,UET.MAT1051,Giải tích 2,5,45,,145,9,60,UET.MAT1051 25,CL,LT,6,4,110-B,Lê Phê Đô,,"Học 1 ca/15 tuần, thi đợt 2"
+K70E-EC5,UET.MAT1051,Giải tích 2,5,,60,145,9,60,UET.MAT1051 25,CL,TH,6,3,110-B,Lê Phê Đô,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70E-EC5,UET.MAT1051,Giải tích 2,5,,60,145,9,60,UET.MAT1051 25,CL,TH,5,4,306-B,Lê Phê Đô,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70E-EC6,UET.MAT1051,Giải tích 2,5,45,,145,9,60,UET.MAT1051 26,CL,LT,6,2,405-B,Trần Thu Hà,,"Học 1 ca/15 tuần, thi đợt 2"
+K70E-EC6,UET.MAT1051,Giải tích 2,5,,60,145,9,60,UET.MAT1051 26,CL,TH,4,2,203-B,Nguyễn Văn Tùng,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70E-EC6,UET.MAT1051,Giải tích 2,5,,60,145,9,60,UET.MAT1051 26,CL,TH,3,1,508-B,Nguyễn Văn Tùng,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70E-EC7,UET.MAT1051,Giải tích 2,5,45,,145,9,60,UET.MAT1051 27,CL,LT,2,2,210-B,Viện Cơ,,"Học 1 ca/15 tuần, thi đợt 2"
+K70E-EC7,UET.MAT1051,Giải tích 2,5,,60,145,9,60,UET.MAT1051 27,CL,TH,4,4,306-B,Viện Cơ,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70E-EC7,UET.MAT1051,Giải tích 2,5,,60,145,9,60,UET.MAT1051 27,CL,TH,2,1,210-B,Viện Cơ,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70E-EC8,UET.MAT1051,Giải tích 2,5,45,,145,9,59,UET.MAT1051 28,CL,LT,5,3,202-B,Viện Cơ,,"Học 1 ca/15 tuần, thi đợt 2"
+K70E-EC8,UET.MAT1051,Giải tích 2,5,,60,145,9,59,UET.MAT1051 28,CL,TH,3,4,304-B,Viện Cơ,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70E-EC8,UET.MAT1051,Giải tích 2,5,,60,145,9,59,UET.MAT1051 28,CL,TH,4,1,105-B,Viện Cơ,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70E-EC9,UET.MAT1051,Giải tích 2,5,45,,145,9,58,UET.MAT1051 29,CL,LT,2,3,403-B,Thái Mạnh Cầu,,"Học 1 ca/15 tuần, thi đợt 2"
+K70E-EC9,UET.MAT1051,Giải tích 2,5,,60,145,9,58,UET.MAT1051 29,CL,TH,5,1,305-B,Thái Mạnh Cầu,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70E-EC9,UET.MAT1051,Giải tích 2,5,,60,145,9,58,UET.MAT1051 29,CL,TH,4,3,110-B,Thái Mạnh Cầu,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70E-CE1,UET.MAT1051,Giải tích 2,5,45,,145,9,62,UET.MAT1051 30,CL,LT,2,4,205-B,Viện Cơ,,"Học 1 ca/15 tuần, thi đợt 2"
+K70E-CE1,UET.MAT1051,Giải tích 2,5,,60,145,9,62,UET.MAT1051 30,CL,TH,3,3,405-B,Viện Cơ,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70E-CE1,UET.MAT1051,Giải tích 2,5,,60,145,9,62,UET.MAT1051 30,CL,TH,5,2,202-B,Viện Cơ,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70E-CE2,UET.MAT1051,Giải tích 2,5,45,,145,9,62,UET.MAT1051 31,CL,LT,5,3,209-B,Thái Mạnh Cầu,,"Học 1 ca/15 tuần, thi đợt 2"
+K70E-CE2,UET.MAT1051,Giải tích 2,5,,60,145,9,62,UET.MAT1051 31,CL,TH,5,2,209-B,Thái Mạnh Cầu,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70E-CE2,UET.MAT1051,Giải tích 2,5,,60,145,9,62,UET.MAT1051 31,CL,TH,4,1,403-B,Thái Mạnh Cầu,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70E-CE3,UET.MAT1051,Giải tích 2,5,45,,145,9,61,UET.MAT1051 32,CL,LT,4,3,203-A,Nguyễn Việt Khoa,,"Học 1 ca/15 tuần, thi đợt 2"
+K70E-CE3,UET.MAT1051,Giải tích 2,5,,60,145,9,61,UET.MAT1051 32,CL,TH,2,3,409-B,Đào thị Bích Thảo,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70E-CE3,UET.MAT1051,Giải tích 2,5,,60,145,9,61,UET.MAT1051 32,CL,TH,3,1,205-B,Đào thị Bích Thảo,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70E-CE4,UET.MAT1051,Giải tích 2,5,45,,145,9,60,UET.MAT1051 33,CL,LT,4,2,410-B,Trần Thu Hà,,"Học 1 ca/15 tuần, thi đợt 2"
+K70E-CE4,UET.MAT1051,Giải tích 2,5,,60,145,9,60,UET.MAT1051 33,CL,TH,3,2,209-B,Dương Thị Thanh Hương,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70E-CE4,UET.MAT1051,Giải tích 2,5,,60,145,9,60,UET.MAT1051 33,CL,TH,6,4,209-B,Dương Thị Thanh Hương,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70E-CE5,UET.MAT1051,Giải tích 2,5,45,,145,9,60,UET.MAT1051 34,CL,LT,2,2,104-B,Đặng Hữu Chung,,"Học 1 ca/15 tuần, thi đợt 2"
+K70E-CE5,UET.MAT1051,Giải tích 2,5,,60,145,9,60,UET.MAT1051 34,CL,TH,6,1,502-B,Đặng Hữu Chung,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70E-CE5,UET.MAT1051,Giải tích 2,5,,60,145,9,60,UET.MAT1051 34,CL,TH,2,4,104-B,Đặng Hữu Chung,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70E-CE6,UET.MAT1051,Giải tích 2,5,45,,145,9,62,UET.MAT1051 35,CL,LT,5,4,405-B,Trần Thanh Hải,,"Học 1 ca/15 tuần, thi đợt 2"
+K70E-CE6,UET.MAT1051,Giải tích 2,5,,60,145,9,62,UET.MAT1051 35,CL,TH,3,3,204-B,Dương Thị Thanh Tâm,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70E-CE6,UET.MAT1051,Giải tích 2,5,,60,145,9,62,UET.MAT1051 35,CL,TH,4,4,305-B,Dương Thị Thanh Tâm,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70E-CE7,UET.MAT1051,Giải tích 2,5,45,,145,9,61,UET.MAT1051 36,CL,LT,2,1,406-B,Đào Quang Khải,,"Học 1 ca/15 tuần, thi đợt 2"
+K70E-CE7,UET.MAT1051,Giải tích 2,5,,60,145,9,61,UET.MAT1051 36,CL,TH,6,3,506-B,Trần Mạnh Cường,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70E-CE7,UET.MAT1051,Giải tích 2,5,,60,145,9,61,UET.MAT1051 36,CL,TH,5,1,307-B,Trần Mạnh Cường,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70M-AT1,UET.MAT1051,Giải tích 2,5,45,,145,9,70,UET.MAT1051 38,CL,LT,4,1,106-A,Trần Thanh Hải,,"Học 1 ca/15 tuần, thi đợt 2"
+K70M-AT1,UET.MAT1051,Giải tích 2,5,,60,145,9,70,UET.MAT1051 38,CL,TH,3,2,203-A,Vũ Thế Hiến,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70M-AT1,UET.MAT1051,Giải tích 2,5,,60,145,9,70,UET.MAT1051 38,CL,TH,2,3,203-A,Vũ Thế Hiến,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70M-AT2,UET.MAT1051,Giải tích 2,5,45,,145,9,63,UET.MAT1051 39,CL,LT,2,4,201-B,Trần Thanh Hải,,"Học 1 ca/15 tuần, thi đợt 2"
+K70M-AT2,UET.MAT1051,Giải tích 2,5,,60,145,9,63,UET.MAT1051 39,CL,TH,6,4,210-T,Vũ Thế Hiến,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70M-AT2,UET.MAT1051,Giải tích 2,5,,60,145,9,63,UET.MAT1051 39,CL,TH,5,2,205-T,Vũ Thế Hiến,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70M-MT1,UET.MAT1051,Giải tích 2,5,45,,145,9,70,UET.MAT1051 40,CL,LT,3,4,106-A,Nguyễn Đình Kiên,,"Học 1 ca/15 tuần, thi đợt 2"
+K70M-MT1,UET.MAT1051,Giải tích 2,5,,60,145,9,70,UET.MAT1051 40,CL,TH,2,3,102-T,Bùi Thị Thu Hoài,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70M-MT1,UET.MAT1051,Giải tích 2,5,,60,145,9,70,UET.MAT1051 40,CL,TH,2,2,205-T,Bùi Thị Thu Hoài,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70M-MT2,UET.MAT1051,Giải tích 2,5,45,,145,9,70,UET.MAT1051 41,CL,LT,4,4,103-A,Nguyễn Việt Khoa,,"Học 1 ca/15 tuần, thi đợt 2"
+K70M-MT2,UET.MAT1051,Giải tích 2,5,,60,145,9,70,UET.MAT1051 41,CL,TH,2,2,207-T,Triệu Công Thành,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70M-MT2,UET.MAT1051,Giải tích 2,5,,60,145,9,70,UET.MAT1051 41,CL,TH,4,3,106-A,Triệu Công Thành,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K70M-MT3,UET.MAT1051,Giải tích 2,5,45,,145,9,70,UET.MAT1051 42,CL,LT,6,4,206-T,Nguyễn Đình Kiên,,"Học 1 ca/15 tuần, thi đợt 2"
+K70M-MT3,UET.MAT1051,Giải tích 2,5,,60,145,9,70,UET.MAT1051 42,CL,TH,5,3,106-A,Bùi Thị Thu Hoài,Ca 1 (học từ tuần 1-15),"Học 1 ca/10 tuần đầu, từ tuần 11 học 2 ca/tuần, thi vào đợt 2"
+K70M-MT3,UET.MAT1051,Giải tích 2,5,,60,145,9,70,UET.MAT1051 42,CL,TH,4,2,204-A,Bùi Thị Thu Hoài,Ca 2 (học đồng thời với Ca 1 từ tuần 11),
+K68I-CS4,INT3403,Đồ họa máy tính,3,45,,,1,74,INT3403 1,CL,LT,4,3,209-T,Ma Thị Châu,,
+K69I-CS1,INT3401E,Trí tuệ nhân tạo,3,45,,,1,65,INT3401E 1,CL,LT,4,1,503-B,Nguyễn Thị Nhật Thanh,,"Học 1 ca/15 tuần, thi đợt 2"
+K68I-CS1,INT3011E,Các vấn đề hiện đại trong KHMT,3,21,24,,1,80,INT3011E 1,CL,LT,4,3,205-T,Nguyễn Thanh Thủy,,"Học 1 ca/15 tuần, thi đợt 2"
+K68I-CS2,INT3011E,Các vấn đề hiện đại trong KHMT,3,21,24,,1,80,INT3011E 2,CL,LT,3,3,207-T,Lê Sỹ Vinh,,"Học 1 ca/15 tuần, thi đợt 2"
+K68I-CS3,INT3011E,Các vấn đề hiện đại trong KHMT,3,21,24,,1,80,INT3011E 3,CL,LT,3,4,211-T,Lê Thanh Hà,,"Học 1 ca/15 tuần, thi đợt 2"
+K68I-CS4,INT3011E,Các vấn đề hiện đại trong KHMT,3,21,24,,1,80,INT3011E 4,CL,LT,6,3,211-T,Nguyễn Thị Nhật Thanh,,"Học 1 ca/15 tuần, thi đợt 2"
+Tất cả,PES 1003,Giáo dục thể chất cơ bản,1,,30,,9,60,PES 1003 1,CL,TH,2,3,Tiết 7-8,TT GDTC,,Học 15 tuần
+Tất cả,PES 1003,Giáo dục thể chất cơ bản,1,,30,,9,60,PES 1003 2,CL,TH,2,3,Tiết 9-10,TT GDTC,,Học 15 tuần
+Tất cả,PES 1003,Giáo dục thể chất cơ bản,1,,30,,9,60,PES 1003 3,CL,TH,3,1,Tiết 1-2,TT GDTC,,Học 15 tuần
+Tất cả,PES 1003,Giáo dục thể chất cơ bản,1,,30,,9,60,PES 1003 4,CL,TH,3,2,Tiết 3-4,TT GDTC,,Học 15 tuần
+Tất cả,PES 1003,Giáo dục thể chất cơ bản,1,,30,,9,60,PES 1003 5,CL,TH,4,1,Tiết 1-2,TT GDTC,,Học 15 tuần
+Tất cả,PES 1003,Giáo dục thể chất cơ bản,1,,30,,9,60,PES 1003 6,CL,TH,4,2,Tiết 3-4,TT GDTC,,Học 15 tuần
+Tất cả,PES 1003,Giáo dục thể chất cơ bản,1,,30,,9,60,PES 1003 7,CL,TH,5,1,Tiết 1-2,TT GDTC,,Học 15 tuần
+Tất cả,PES 1003,Giáo dục thể chất cơ bản,1,,30,,9,60,PES 1003 8,CL,TH,5,2,Tiết 3-4,TT GDTC,,
+K69A-AI1,INT3405#,Học máy,3,45,,,1,53,INT3405# 1,CL,LT,5,2,109-B,Nguyễn Tuấn Phong,,"Học 1 ca/15 tuần, thi đợt 2"
+K69A-AI2,INT3405#,Học máy,3,45,,,1,53,INT3405# 2,CL,LT,5,3,104-B,Nguyễn Tuấn Phong,,"Học 1 ca/15 tuần, thi đợt 2"
+K69A-AI3,INT3405#,Học máy,3,45,,,1,53,INT3405# 3,CL,LT,5,1,109-B,Trần Hồng Việt,,"Học 1 ca/15 tuần, thi đợt 2"
+K69A-AI4,INT3405#,Học máy,3,45,,,1,53,INT3405# 4,CL,LT,4,4,201-B,Nguyễn Hải Toàn,,"Học 1 ca/15 tuần, thi đợt 2"

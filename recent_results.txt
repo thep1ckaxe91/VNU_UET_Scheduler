@@ -1,0 +1,21 @@
+
+================================================================================
+SCHEDULING RESULT - 2026-01-20 01:29:04
+================================================================================
+Best Fitness Score: 0.9871
+Total Credits: 15
+
+Thứ 3:
+  Tiết 4-6: Giải tích 2 (UET.MAT1051 - UET.MAT1051 22) | TH | Phòng: 201-B
+  Tiết 7-9: Giải tích 2 (UET.MAT1051 - UET.MAT1051 22) | LT | Phòng: 201-B
+
+Thứ 4:
+  Tiết 3-4: Giáo dục thể chất cơ bản (PES 1003 - PES 1003 6) | TH | Phòng: TT GDTC
+  Tiết 7-9: Đồ họa máy tính (INT3403 - INT3403 1) | LT | Phòng: 209-T
+
+Thứ 5:
+  Tiết 1-3: An toàn và an ninh mạng (INT3307 - INT3307 21) | TH | Phòng: 102-B
+  Tiết 4-6: Giải tích 2 (UET.MAT1051 - UET.MAT1051 22) | TH | Phòng: 504-B
+  Tiết 7-9: Học máy (INT3405# - INT3405# 2) | LT | Phòng: 104-B
+
+
