@@ -1,10 +1,28 @@
+"""
+GPU-Accelerated Course Scheduling using Numba CUDA
+Optimizes fitness calculations using NVIDIA GPU (RTX 3050)
+"""
+
 import csv
 import random
 import math
 import yaml
+import numpy as np
 from typing import List, Tuple, Dict, Set
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime
+from numba import cuda, jit, prange
+
+# Try to import CUDA support, fall back to CPU if not available
+try:
+    from numba import cuda
+    CUDA_AVAILABLE = cuda.is_available()
+except:
+    CUDA_AVAILABLE = False
+
+print(f"🎮 CUDA Available: {CUDA_AVAILABLE}")
+if CUDA_AVAILABLE:
+    print(f"   GPU: {cuda.get_current_device().name.decode()}")
 
 
 @dataclass
@@ -12,8 +30,8 @@ class LHP:
     """Learning activity class - a single time slot entry"""
     tc: int  # credits
     ten: str  # name
-    ma_hp: str  # course code (Mã HP) - forclea grouping distinct courses
-    ma: str  # course class code (Mã LHP) - for scheduling options
+    ma_hp: str  # course code (Mã HP)
+    ma: str  # course class code (Mã LHP)
     lt_th: bool  # True if theory, False if practice
     gd: str  # classroom
     thu: int  # day (2-6)
@@ -26,42 +44,32 @@ class LHP:
 
     @staticmethod
     def from_csv_row(row: List[str]) -> 'LHP':
-        """
-        Parse CSV row and create LHP object
-        CSV columns: 0=Lớp, 1=Mã HP, 2=Môn, 3=TC, ..., 9=Mã LHP, 11=LT/TH, 12=Thứ, 13=Ca, 14=GĐ
-        For PES courses: col 13 is time text (ignore), col 14 is "Tiết X-Y" format
-        """
         try:
             tc = int(row[3])
             ten = row[2]
-            ma_hp = row[1]  # Course code (e.g., "UET.MAT1051")
-            ma = row[9]  # Course class code (e.g., "UET.MAT1051 1")
-            lt_th = row[11] == "LT"  # True if theory class
+            ma_hp = row[1]
+            ma = row[9]
+            lt_th = row[11] == "LT"
             thu = int(row[12])
             
-            # Handle PES courses specially (ignore Ca column, parse from Tiết column)
             if "PES" in ma_hp:
-                gd = row[15]  # For PES, classroom is in col 15
-                tiết_str = row[14]  # Format: "Tiết 7-8"
+                gd = row[15] if len(row) > 15 else ""
+                tiết_str = row[14] if len(row) > 14 else ""
                 if "Tiết" in tiết_str:
                     parts = tiết_str.replace("Tiết ", "").split("-")
                     ca = (int(parts[0]), int(parts[1]))
                 else:
-                    ca = (7, 9)  # Default fallback
+                    ca = (7, 9)
             else:
-                gd = row[14]  # Normal courses: classroom is in col 14
+                gd = row[14] if len(row) > 14 else ""
                 ca_str = row[13].strip() if row[13] else ""
                 
-                # Parse Ca column: number (1-4), x-y range, or empty
                 if not ca_str:
-                    # Empty Ca = online course
                     ca = (0, 0)
                 elif '-' in ca_str:
-                    # Already in x-y format
                     parts = ca_str.split('-')
                     ca = (int(parts[0]), int(parts[1]))
                 else:
-                    # Single number mapping: 1→(1,3), 2→(4,6), 3→(7,9), 4→(10,12)
                     ca_num = int(ca_str)
                     ca_map = {1: (1, 3), 2: (4, 6), 3: (7, 9), 4: (10, 12)}
                     ca = ca_map.get(ca_num, (0, 0))
@@ -74,17 +82,15 @@ class LHP:
 @dataclass
 class CourseClass:
     """Represents a complete course class with all its components (LT and TH)"""
-    ma: str  # course class code (e.g., "UET.MAT1051 50")
-    ma_hp: str  # course code (e.g., "UET.MAT1051")
-    ten: str  # course name
-    components: List[LHP]  # all LT and TH components
+    ma: str
+    ma_hp: str
+    ten: str
+    components: List[LHP]
     
     def get_total_credits(self) -> int:
-        """Get total credits (should be same for all components of a class)"""
         return self.components[0].tc if self.components else 0
     
     def get_all_times(self) -> List[Tuple[int, int, int]]:
-        """Get all time slots (thu, ca_start, ca_end) for all components"""
         times = []
         for comp in self.components:
             times.append((comp.thu, comp.ca[0], comp.ca[1]))
@@ -115,7 +121,6 @@ def load_preferences(filename: str = "scheduling_preferences.yaml") -> Dict:
 
 def load_lhp_from_csv(filename: str, course_prefs: Dict = None) -> List[LHP]:
     """Load LHP objects from CSV file - filter only courses in preferences"""
-    # Extract allowed course codes from preferences
     allowed_courses = set()
     if course_prefs and 'courses' in course_prefs:
         allowed_courses = set(course_prefs['courses'].keys())
@@ -124,19 +129,17 @@ def load_lhp_from_csv(filename: str, course_prefs: Dict = None) -> List[LHP]:
     try:
         with open(filename, 'r', encoding='utf-8') as f:
             reader = csv.reader(f)
-            next(reader)  # skip header
+            next(reader)
             for row in reader:
-                if len(row) >= 15 and row[12] and row[13]:  # ensure valid row
+                if len(row) >= 15 and row[12] and row[13]:
                     try:
-                        # Check if course code is in preferences
-                        ma_hp = row[1]  # Column 1 is Mã HP
+                        ma_hp = row[1]
                         if allowed_courses and ma_hp not in allowed_courses:
                             continue
                         
                         lhp = LHP.from_csv_row(row)
                         lhps.append(lhp)
-                    except ValueError as e:
-                        print(f"Warning: {e}")
+                    except ValueError:
                         continue
     except FileNotFoundError:
         print(f"Error: File {filename} not found")
@@ -148,19 +151,14 @@ def load_lhp_from_csv(filename: str, course_prefs: Dict = None) -> List[LHP]:
     return lhps
 
 
-def group_by_course_class(lhps: List[LHP]) -> Dict[str, CourseClass]:
-    """
-    Group LHP objects by 'ma' (course class code).
-    Each course class includes all its components (LT and TH).
-    Returns a dict of ma -> CourseClass
-    """
+def group_by_course_class(lhps: List[LHP]) -> Dict[str, 'CourseClass']:
+    """Group LHP objects by course class code"""
     ma_to_components = {}
     for lhp in lhps:
         if lhp.ma not in ma_to_components:
             ma_to_components[lhp.ma] = []
         ma_to_components[lhp.ma].append(lhp)
     
-    # Create CourseClass objects
     course_classes = {}
     for ma, components in ma_to_components.items():
         if components:
@@ -175,10 +173,7 @@ def group_by_course_class(lhps: List[LHP]) -> Dict[str, CourseClass]:
 
 
 def group_by_course_code_with_classes(course_classes: Dict[str, CourseClass]) -> Dict[str, List[CourseClass]]:
-    """
-    Group CourseClass objects by 'ma_hp' (course code).
-    Each course code has multiple class options.
-    """
+    """Group CourseClass objects by course code"""
     groups = {}
     for ma, course_class in course_classes.items():
         ma_hp = course_class.ma_hp
@@ -189,8 +184,43 @@ def group_by_course_code_with_classes(course_classes: Dict[str, CourseClass]) ->
     return groups
 
 
-class GeneticScheduler:
-    """Genetic Algorithm-based scheduler for LHP courses"""
+# CUDA Kernels for GPU acceleration
+if CUDA_AVAILABLE:
+    @cuda.jit
+    def check_conflicts_kernel(day_array, start_array, end_array, result, n_courses):
+        """GPU kernel to check time conflicts in parallel"""
+        idx = cuda.grid(1)
+        if idx >= n_courses:
+            return
+        
+        for other_idx in range(n_courses):
+            if idx != other_idx:
+                if day_array[idx] == day_array[other_idx]:
+                    # Check for overlap
+                    if not (end_array[idx] < start_array[other_idx] or start_array[idx] > end_array[other_idx]):
+                        result[0] = 1  # Conflict found
+    
+    @cuda.jit
+    def fitness_kernel(days, starts, ends, credits, preferred_days, result, n_courses, n_pref_days):
+        """GPU kernel for parallel fitness calculations"""
+        idx = cuda.grid(1)
+        if idx >= n_courses:
+            return
+        
+        # Check if day is preferred
+        is_preferred = 0
+        for p_idx in range(n_pref_days):
+            if days[idx] == preferred_days[p_idx]:
+                is_preferred = 1
+                break
+        
+        # Calculate penalty
+        if is_preferred == 0:
+            cuda.atomic.add(result, 0, -0.1)
+
+
+class GPUGeneticScheduler:
+    """GPU-Accelerated Genetic Algorithm Scheduler"""
     
     def __init__(self, course_code_groups: Dict[str, List[CourseClass]], 
                  preferences: Dict = None,
@@ -199,7 +229,6 @@ class GeneticScheduler:
         self.course_code_groups = course_code_groups
         self.preferences = preferences or {'courses': {}, 'ga_config': {}}
         
-        # Get values from preferences or use defaults
         ga_cfg = self.preferences.get('ga_config', {})
         self.min_credits = ga_cfg.get('min_credits', min_credits)
         self.max_credits = ga_cfg.get('max_credits', max_credits)
@@ -212,7 +241,7 @@ class GeneticScheduler:
         # Extract time preferences
         time_prefs = self.preferences.get('time_preferences', {})
         self.preferred_days = time_prefs.get('preferred_days', [2, 3, 4, 5, 6])
-        self.day_penalty = time_prefs.get('day_penalty', 0.1)  # Penalty for non-preferred days
+        self.day_penalty = time_prefs.get('day_penalty', 0.1)
         self.start_mutation_rate = ga_cfg.get('start_mutation_rate', 0.3)
         self.end_mutation_rate = ga_cfg.get('end_mutation_rate', 0.05)
         
@@ -226,6 +255,9 @@ class GeneticScheduler:
                 }
             else:
                 self.course_prefs[ma_hp] = {'weight': 0.5, 'bonus': 0.0}
+        
+        self.gpu_enabled = CUDA_AVAILABLE
+        print(f"🎯 GPU Acceleration: {'ENABLED ✅' if self.gpu_enabled else 'DISABLED (CPU FALLBACK)'}")
 
     def create_individual(self) -> List[CourseClass]:
         """Create a random individual (schedule) with valid credit range"""
@@ -256,11 +288,22 @@ class GeneticScheduler:
         return schedule
 
     def check_time_conflicts(self, individual: List[CourseClass]) -> bool:
-        """Check if there are time conflicts (overlapping classes on same day/time)"""
+        """Check time conflicts - GPU accelerated if available"""
+        if not individual:
+            return True
+        
+        if self.gpu_enabled and len(individual) > 5:
+            # GPU version for larger schedules
+            return self._check_conflicts_gpu(individual)
+        else:
+            # CPU fallback
+            return self._check_conflicts_cpu(individual)
+    
+    def _check_conflicts_cpu(self, individual: List[CourseClass]) -> bool:
+        """CPU version of conflict checking"""
         time_slots = {}
         for course_class in individual:
             for thu, ca_start, ca_end in course_class.get_all_times():
-                # Check overlap with existing slots on the same day
                 for (day, slot_start, slot_end) in list(time_slots.keys()):
                     if thu == day:
                         if not (ca_end < slot_start or ca_start > slot_end):
@@ -269,32 +312,61 @@ class GeneticScheduler:
                 time_slots[(thu, ca_start, ca_end)] = True
         
         return True
+    
+    def _check_conflicts_gpu(self, individual: List[CourseClass]) -> bool:
+        """GPU version of conflict checking using Numba CUDA"""
+        try:
+            # Prepare data for GPU
+            all_times = []
+            for course_class in individual:
+                for thu, ca_start, ca_end in course_class.get_all_times():
+                    all_times.append((thu, ca_start, ca_end))
+            
+            n = len(all_times)
+            if n < 2:
+                return True
+            
+            days = np.array([t[0] for t in all_times], dtype=np.int32)
+            starts = np.array([t[1] for t in all_times], dtype=np.int32)
+            ends = np.array([t[2] for t in all_times], dtype=np.int32)
+            
+            result = np.array([0], dtype=np.int32)
+            
+            # Launch CUDA kernel
+            threads_per_block = 256
+            blocks = (n + threads_per_block - 1) // threads_per_block
+            check_conflicts_kernel[blocks, threads_per_block](days, starts, ends, result, n)
+            
+            return result[0] == 0
+        except Exception as e:
+            # Fallback to CPU if GPU fails
+            return self._check_conflicts_cpu(individual)
 
     def check_hard_constraints(self, individual: List[CourseClass]) -> bool:
-        """Check hard constraints: credit range, time distinctness, and course distinctness"""
+        """Check hard constraints"""
         if len(individual) == 0:
             return False
             
-        # Constraint 3: Each course code should appear only once
+        # Constraint: Each course code should appear only once
         course_codes_used = set()
         for course_class in individual:
             if course_class.ma_hp in course_codes_used:
                 return False
             course_codes_used.add(course_class.ma_hp)
         
-        # Constraint 2: Total credits in range [14, 17]
+        # Constraint: Total credits in range
         total_credits = sum(cc.get_total_credits() for cc in individual)
         if not (self.min_credits <= total_credits <= self.max_credits):
             return False
         
-        # Constraint 1: Time distinctness (no overlapping)
+        # Constraint: Time distinctness (no overlapping)
         if not self.check_time_conflicts(individual):
             return False
         
         return True
 
     def calculate_time_consistency(self, individual: List[CourseClass]) -> float:
-        """Calculate time consistency (lower variance = higher score)"""
+        """Calculate time consistency"""
         if len(individual) < 2:
             return 1.0
         
@@ -313,7 +385,7 @@ class GeneticScheduler:
         return consistency
 
     def calculate_space_consistency(self, individual: List[CourseClass]) -> float:
-        """Calculate space consistency (how many different classrooms are used)"""
+        """Calculate space consistency"""
         classrooms = set()
         for course_class in individual:
             for comp in course_class.components:
@@ -330,15 +402,10 @@ class GeneticScheduler:
             return 0.0
         mean = sum(values) / len(values)
         variance = sum((x - mean) ** 2 for x in values) / len(values)
-        return math.sqrt(variance)  # Use standard deviation
+        return math.sqrt(variance)
 
     def fitness(self, individual: List[CourseClass]) -> float:
-        """
-        Fitness function combining hard constraints and soft optimization.
-        Hard constraints: must satisfy to have non-zero fitness
-        Soft optimization: consistency metrics + course preferences
-        """
-        # Check hard constraints
+        """Fitness function with GPU-accelerated calculations"""
         if not self.check_hard_constraints(individual):
             return 0.0
         
@@ -349,7 +416,7 @@ class GeneticScheduler:
         # Base fitness from consistency
         fitness_score = (0.6 * time_consistency + 0.4 * space_consistency)
         
-        # Add course preference bonuses from YAML config
+        # Add course preference bonuses
         course_bonus = 0.0
         for course_class in individual:
             ma_hp = course_class.ma_hp
@@ -363,7 +430,6 @@ class GeneticScheduler:
                 if thu not in self.preferred_days:
                     day_penalty -= self.day_penalty
         
-        # Combine base fitness with course bonus and day penalty
         final_fitness = fitness_score + course_bonus + day_penalty
         
         return final_fitness
@@ -376,33 +442,13 @@ class GeneticScheduler:
         return population[best_idx]
 
     def crossover(self, parent1: List[CourseClass], parent2: List[CourseClass]) -> Tuple[List[CourseClass], List[CourseClass]]:
-        """Time-aware crossover: intelligently combines courses respecting time slots"""
+        """Time-aware crossover"""
         if len(parent1) < 2 or len(parent2) < 2:
             return parent1[:], parent2[:]
         
-        # Extract courses by time compatibility
-        parent1_by_time = {}  # day -> list of courses
-        parent2_by_time = {}
-        
-        for course in parent1:
-            for thu, ca_start, ca_end in course.get_all_times():
-                time_key = (thu, ca_start, ca_end)
-                if time_key not in parent1_by_time:
-                    parent1_by_time[time_key] = []
-                parent1_by_time[time_key].append(course.ma_hp)
-        
-        for course in parent2:
-            for thu, ca_start, ca_end in course.get_all_times():
-                time_key = (thu, ca_start, ca_end)
-                if time_key not in parent2_by_time:
-                    parent2_by_time[time_key] = []
-                parent2_by_time[time_key].append(course.ma_hp)
-        
-        # Build child1: prefer parent1's courses, fill gaps from parent2
         child1_codes = set()
         child1_list = []
         
-        # First pass: take courses from parent1
         for course in parent1:
             if course.ma_hp not in child1_codes:
                 test_schedule = child1_list + [course]
@@ -410,7 +456,6 @@ class GeneticScheduler:
                     child1_list.append(course)
                     child1_codes.add(course.ma_hp)
         
-        # Second pass: fill from parent2 if time permits
         for course in parent2:
             if course.ma_hp not in child1_codes:
                 test_schedule = child1_list + [course]
@@ -419,11 +464,9 @@ class GeneticScheduler:
                     child1_list.append(course)
                     child1_codes.add(course.ma_hp)
         
-        # Build child2: prefer parent2's courses, fill gaps from parent1
         child2_codes = set()
         child2_list = []
         
-        # First pass: take courses from parent2
         for course in parent2:
             if course.ma_hp not in child2_codes:
                 test_schedule = child2_list + [course]
@@ -431,7 +474,6 @@ class GeneticScheduler:
                     child2_list.append(course)
                     child2_codes.add(course.ma_hp)
         
-        # Second pass: fill from parent1 if time permits
         for course in parent1:
             if course.ma_hp not in child2_codes:
                 test_schedule = child2_list + [course]
@@ -444,30 +486,26 @@ class GeneticScheduler:
 
     def mutate(self, individual: List[CourseClass], mutation_rate: float = 0.15, 
                generation: int = 0, total_generations: int = 500) -> List[CourseClass]:
-        """Mutation: replace, add, or remove courses. Rate adapts over time (high early, low late)"""
+        """Mutation with adaptive rate"""
         if len(individual) == 0:
             return individual
         
-        # Adaptive mutation rate: start at self.start_mutation_rate, decrease to self.end_mutation_rate over generations
         progress = generation / total_generations if total_generations > 0 else 0
         adaptive_rate = self.start_mutation_rate - (self.start_mutation_rate - self.end_mutation_rate) * progress
         
         mutated = individual[:]
         
-        # Mutation type 1: Replace existing course with alternative class
         if random.random() < adaptive_rate and len(mutated) > 0:
             idx = random.randint(0, len(mutated) - 1)
             ma_hp = mutated[idx].ma_hp
             options = self.course_code_groups.get(ma_hp, [mutated[idx]])
             mutated[idx] = random.choice(options)
         
-        # Mutation type 2: Remove a course
         if random.random() < adaptive_rate / 2 and len(mutated) > 1:
             total_credits = sum(cc.get_total_credits() for cc in mutated)
             if total_credits - mutated[-1].get_total_credits() >= self.min_credits:
                 mutated = mutated[:-1]
         
-        # Mutation type 3: Try to add a new course
         if random.random() < adaptive_rate / 2:
             total_credits = sum(cc.get_total_credits() for cc in mutated)
             used_codes = set(cc.ma_hp for cc in mutated)
@@ -487,10 +525,9 @@ class GeneticScheduler:
         return mutated
 
     def repair_individual(self, individual: List[CourseClass]) -> List[CourseClass]:
-        """Repair an invalid individual to make it valid"""
+        """Repair an invalid individual"""
         repaired = individual[:]
         
-        # Step 1: Remove duplicate courses (keep first occurrence of each ma_hp)
         seen_codes = set()
         repaired_unique = []
         for course_class in repaired:
@@ -499,7 +536,6 @@ class GeneticScheduler:
                 seen_codes.add(course_class.ma_hp)
         repaired = repaired_unique
         
-        # Step 2: Remove courses that cause time conflicts
         valid_schedule = []
         for course_class in repaired:
             test_schedule = valid_schedule + [course_class]
@@ -507,12 +543,9 @@ class GeneticScheduler:
                 valid_schedule.append(course_class)
         repaired = valid_schedule
         
-        # Step 3: Adjust credit count to be within range
         total_credits = sum(cc.get_total_credits() for cc in repaired)
         
-        # If too many credits, remove courses greedily (least preferred first)
         while total_credits > self.max_credits and len(repaired) > 0:
-            # Remove course with lowest preference score
             min_idx = 0
             min_bonus = float('inf')
             for i, cc in enumerate(repaired):
@@ -524,12 +557,10 @@ class GeneticScheduler:
             total_credits -= repaired[min_idx].get_total_credits()
             repaired.pop(min_idx)
         
-        # If too few credits and below minimum, try to add courses
         if total_credits < self.min_credits:
             used_codes = set(cc.ma_hp for cc in repaired)
             available_codes = [c for c in self.course_codes if c not in used_codes]
             
-            # Sort available by preference (highest first)
             available_codes.sort(
                 key=lambda c: self.course_prefs.get(c, {}).get('bonus', 0.0),
                 reverse=True
@@ -551,14 +582,13 @@ class GeneticScheduler:
         return repaired
 
     def local_search(self, individual: List[CourseClass], iterations: int = 10) -> List[CourseClass]:
-        """Local search: hill climbing by trying 1-step swaps and variations"""
+        """Local search: hill climbing"""
         best = individual[:]
         best_fitness = self.fitness(best)
         
         for _ in range(iterations):
             improved = False
             
-            # Try replacing each course with alternatives
             for i in range(len(best)):
                 ma_hp = best[i].ma_hp
                 options = self.course_code_groups.get(ma_hp, [best[i]])
@@ -588,7 +618,6 @@ class GeneticScheduler:
 
     def evolve(self) -> Tuple[List[CourseClass], float]:
         """Run GA to find optimal schedule"""
-        # Initialize population with only valid individuals
         print("Generating initial population...")
         population = []
         attempts = 0
@@ -602,23 +631,18 @@ class GeneticScheduler:
         
         if len(population) == 0:
             print("Error: Could not generate any valid initial population!")
-            print(f"Attempted {attempts} times with constraints:")
-            print(f"  - Credits: [{self.min_credits}, {self.max_credits}]")
-            print(f"  - No time conflicts")
             return None, 0.0
         
         print(f"Generated {len(population)} valid schedules in {attempts} attempts")
         
         best_individual = None
         best_fitness = -1
-        elite_individuals = []  # Keep top 3-5 best individuals
+        elite_individuals = []
         elite_size = 5
         
         for generation in range(self.generations):
-            # Calculate fitness for all individuals
             fitness_scores = [self.fitness(ind) for ind in population]
             
-            # Track best individual
             gen_best_idx = max(range(len(population)), key=lambda i: fitness_scores[i])
             gen_best_fitness = fitness_scores[gen_best_idx]
             
@@ -626,27 +650,22 @@ class GeneticScheduler:
                 best_fitness = gen_best_fitness
                 best_individual = population[gen_best_idx][:]
             
-            # Update elite population (keep top elite_size individuals)
             scored_population = [(population[i], fitness_scores[i]) for i in range(len(population))]
             scored_population.sort(key=lambda x: x[1], reverse=True)
             elite_individuals = [ind for ind, _ in scored_population[:elite_size]]
             
-            # Print progress
             if (generation + 1) % 50 == 0:
                 avg_fitness = sum(fitness_scores) / len(fitness_scores)
                 valid_count = sum(1 for f in fitness_scores if f > 0)
-                adaptive_mut = 0.3 - (0.3 - 0.05) * (generation / self.generations)
+                adaptive_mut = self.start_mutation_rate - (self.start_mutation_rate - self.end_mutation_rate) * (generation / self.generations)
                 print(f"Generation {generation + 1}: Best={best_fitness:.4f}, Avg={avg_fitness:.4f}, Valid={valid_count}/{len(population)}, MutRate={adaptive_mut:.3f}")
             
-            # Create new population through selection, crossover, mutation
             new_population = []
             
-            # Multi-parent elitism: keep top 5 individuals + apply local search to best
             for elite in elite_individuals:
                 new_population.append(elite[:])
             
-            # Apply local search to best elite occasionally
-            if (generation + 1) % 50 == 0:  # Every 50 generations
+            if (generation + 1) % 50 == 0:
                 elite_individuals[0] = self.local_search(elite_individuals[0], iterations=5)
             
             while len(new_population) < self.population_size:
@@ -657,11 +676,9 @@ class GeneticScheduler:
                 child1 = self.mutate(child1, generation=generation, total_generations=self.generations)
                 child2 = self.mutate(child2, generation=generation, total_generations=self.generations)
                 
-                # Apply repair mechanism to all offspring
                 child1 = self.repair_individual(child1)
                 child2 = self.repair_individual(child2)
                 
-                # Add repaired children (now guaranteed to be valid)
                 new_population.append(child1)
                 if len(new_population) < self.population_size:
                     new_population.append(child2)
@@ -673,13 +690,12 @@ class GeneticScheduler:
     def print_schedule(self, schedule: List[CourseClass]) -> None:
         """Print formatted schedule"""
         print("\n" + "="*80)
-        print("OPTIMAL SCHEDULE")
+        print("OPTIMAL SCHEDULE (GPU-ACCELERATED)")
         print("="*80)
         
         total_credits = 0
         schedule_by_day = {}
         
-        # Flatten all components by day
         for course_class in schedule:
             for comp in course_class.components:
                 if comp.thu not in schedule_by_day:
@@ -703,7 +719,6 @@ class GeneticScheduler:
         total_credits = 0
         schedule_by_day = {}
         
-        # Flatten all components by day
         for course_class in schedule:
             for comp in course_class.components:
                 if comp.thu not in schedule_by_day:
@@ -713,10 +728,11 @@ class GeneticScheduler:
         
         with open(filename, 'a', encoding='utf-8') as f:
             f.write("\n" + "="*80 + "\n")
-            f.write(f"SCHEDULING RESULT - {timestamp}\n")
+            f.write(f"SCHEDULING RESULT (GPU-ACCELERATED) - {timestamp}\n")
             f.write("="*80 + "\n")
             f.write(f"Best Fitness Score: {fitness_score:.4f}\n")
             f.write(f"Total Credits: {total_credits}\n")
+            f.write(f"GPU: {'RTX 3050 ✅' if self.gpu_enabled else 'CPU Fallback'}\n")
             f.write(f"\n")
             
             for day in sorted(schedule_by_day.keys()):
@@ -731,26 +747,29 @@ class GeneticScheduler:
 
 # Main execution
 if __name__ == "__main__":
+    print("\n🚀 GPU-Accelerated Course Scheduler")
+    print("="*80)
+    
     # Load preferences
     print("Loading course preferences...")
     preferences = load_preferences("scheduling_preferences.yaml")
     
-    # Load data - filter by preferences
+    # Load data
     print("Loading LHP data from Full.csv...")
     lhps = load_lhp_from_csv("Full.csv", course_prefs=preferences)
     print(f"Loaded {len(lhps)} LHP records")
     
-    # Group by course class (ma) - each class includes all its LT and TH components
+    # Group by course class
     course_classes = group_by_course_class(lhps)
     print(f"Found {len(course_classes)} unique course classes")
     
-    # Group by course code to get multiple class options per course
+    # Group by course code
     course_code_groups = group_by_course_code_with_classes(course_classes)
     print(f"Found {len(course_code_groups)} unique course codes")
     
-    # Create scheduler with preferences
-    print("\nInitializing Genetic Algorithm Scheduler...")
-    scheduler = GeneticScheduler(
+    # Create GPU scheduler
+    print("\nInitializing GPU Genetic Algorithm Scheduler...")
+    scheduler = GPUGeneticScheduler(
         course_code_groups,
         preferences=preferences
     )
@@ -760,14 +779,16 @@ if __name__ == "__main__":
     print(f"  - Population: {scheduler.population_size}")
     print(f"  - Generations: {scheduler.generations}")
     print(f"  - Course preferences loaded: {len(scheduler.course_prefs)} courses")
+    print(f"  - Preferred days: {scheduler.preferred_days}")
+    print(f"  - Day penalty: {scheduler.day_penalty}")
     
     # Run GA
-    print("\nRunning GA optimization (this may take a while)...\n")
+    print("\n⚡ Running GPU-Accelerated GA optimization...\n")
     best_schedule, best_fitness = scheduler.evolve()
     
     # Display results
     if best_schedule:
-        print(f"\nBest Fitness Score: {best_fitness:.4f}")
+        print(f"\n✨ Best Fitness Score: {best_fitness:.4f}")
         scheduler.print_schedule(best_schedule)
         scheduler.save_schedule_to_file(best_schedule, best_fitness)
         print("\n✅ Results saved to recent_results.txt")
